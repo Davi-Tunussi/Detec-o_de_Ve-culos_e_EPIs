@@ -1,11 +1,16 @@
 # Detecção de Veículos e EPIs (Rede Neural)
 
 Este projeto utiliza redes neurais para realizar a detecção de veículos, pessoas e capacetes (EPIs). O código foi desenvolvido utilizando o modelo **YOLOv8**, e é capaz de:
+
 - Detectar veículos em movimento.
 - Identificar pessoas em um vídeo.
 - Verificar se as pessoas estão utilizando capacetes.
 - Salvar imagens de **ROIs** (Regiões de Interesse) de pessoas sem capacete.
 - Gerar um log de alertas sempre que uma pessoa sem capacete for detectada.
+
+## Alteração Importante: Vídeo de Entrada
+
+Devido ao tamanho do arquivo `ch5.mp4`, ele foi removido do repositório. O link para o vídeo está disponível no arquivo `data/input/link_do_video.txt`. Para executar o código, insira o caminho do vídeo no script principal (`main.py`) antes de iniciar o processamento.
 
 ## Como Funciona o Código
 
@@ -13,7 +18,7 @@ O código realiza as seguintes etapas:
 
 1. **Carregamento do modelo YOLOv8**: O modelo treinado é carregado a partir do arquivo `best.pt`, utilizando a biblioteca `ultralytics`.
 
-2. **Processamento de vídeo**: O vídeo de entrada (`ch5.mp4`) é processado frame por frame. Para cada frame, o modelo YOLOv8 realiza a detecção de objetos, incluindo veículos, pessoas e capacetes.
+2. **Processamento de vídeo**: O vídeo de entrada é processado frame por frame. Para cada frame, o modelo YOLOv8 realiza a detecção de objetos, incluindo veículos, pessoas e capacetes.
 
 3. **Verificação de capacetes**: A detecção de pessoas é comparada com a detecção de capacetes. Se uma pessoa estiver detectada sem capacete, sua imagem (ROI) é salva e um alerta é gerado.
 
@@ -40,65 +45,102 @@ Embora o código consiga salvar corretamente as imagens de ROIs de pessoas sem c
 
 ## Estrutura de Diretórios
 
-O projeto está organizado da seguinte forma:
-
-. ├── data │ └── input │ └── ch5.mp4 # Vídeo de entrada │ └── output │ ├── roi_carros # Pastas com as ROIs dos veículos │ ├── roi_pessoas # Pastas com as ROIs das pessoas │ └── output_video.mp4 # Vídeo de saída ├── logs │ └── alertas.log # Arquivo de log contendo os alertas ├── models │ └── best.pt # Modelo treinado YOLO ├── src │ └── main.py # Código principal para executar o projeto ├── .gitignore ├── README.md # Este arquivo ├── requirements.txt # Arquivo com as dependências do projeto
+```plaintext
+.
+├── data
+│   ├── input
+│   │   ├── link_do_video.txt  # Link do vídeo de entrada (ch5.mp4 no YouTube)
+│   └── output
+│       ├── roi_carros         # Pastas com as ROIs dos veículos
+│       ├── roi_pessoas        # Pastas com as ROIs das pessoas
+│       └── output_video.mp4   # Vídeo de saída
+├── logs
+│   └── alertas.log            # Arquivo de log contendo os alertas
+├── models
+│   └── best.pt                # Modelo treinado YOLO
+├── src
+│   └── main.py                # Código principal para executar o projeto
+├── .gitignore
+├── README.md                  # Este arquivo
+├── requirements.txt           # Arquivo com as dependências do projeto
+```
 
 ## Como Executar
 
 ### Requisitos
-
 Certifique-se de ter o **Python 3.7+** instalado. Além disso, o código depende das bibliotecas listadas no arquivo `requirements.txt`.
 
 ### Passos
 
 1. **Clone o repositório:**
+```
+   git clone https://github.com/Davi-Tunussi/Detec-o_de_Ve-culos_e_EPIs.git
+```
 
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
+   cd Detec-o_de_Ve-culos_e_EPIs
+### Instruções de Uso
 
-2. **Instale as dependências:**
-    Execute o seguinte comando para instalar todas as bibliotecas necessárias:
-    pip install -r requirements.txt
+2. **Instale as Dependências**
 
-3. **Execute o script principal:**
-    Após instalar as dependências, execute o código com:
-    python src/main.py
-    O código irá processar o vídeo de entrada e gerar o vídeo de saída com as deteções, além de salvar as imagens das ROIs e gerar os logs de alertas.
+```
+pip install -r requirements.txt
+```
+
+3. **Configure o Vídeo de Entrada**
+
+   Acesse o arquivo data/input/link_do_video.txt e copie o link do vídeo no YouTube.
+Atualize o script main.py com o caminho do vídeo de entrada (após baixá-lo ou usar streaming, conforme necessário).
+
+4. **Execute o Script Principal**
+   
+      Para executar o código principal, rode o seguinte comando:
+```
+python src/main.py
+```
+   O código irá processar o vídeo de entrada e gerar o vídeo de saída com as detecções, além de salvar as imagens das ROIs e gerar os logs de alertas.
 
 ## Dependências
-
 As principais dependências do projeto estão listadas no arquivo requirements.txt:
 
-opencv-python
-torch
-ultralytics
+-opencv-python
+
+-torch
+
+-ultralytics
 
 Para instalar as dependências automaticamente, execute:
-
+```
 pip install -r requirements.txt
+```
+### Possíveis Melhorias
+- Aprimorar a Detecção de Capacetes
+   O modelo pode ser ajustado para melhorar a detecção de capacetes, especialmente em pessoas em movimento, para evitar o erro de salvar ROIs de pessoas com capacete.
 
-## Possíveis Melhorias
+- Ajuste de Parâmetros de IOU
+   O valor do Intersection over Union (IoU) utilizado para verificar se dois objetos são o mesmo pode ser ajustado para melhorar a precisão na comparação de objetos em movimento.
 
-1. **Aprimorar a detecção de capacetes:**
-    O modelo pode ser ajustado para melhorar a detecção de capacetes, especialmente em pessoas em movimento, para evitar o erro de salvar ROIs de pessoas com capacete.
-
-2. **Ajuste de parâmetros de IOU:**
-    O valor do Intersection over Union (IoU) utilizado para verificar se dois objetos são o mesmo pode ser ajustado para melhorar a precisão na comparação de objetos em movimento.
-
-3. **Análise de desempenho:**
+- Análise de Desempenho
    Melhorar o desempenho em termos de velocidade, especialmente em vídeos grandes, considerando a otimização do uso da GPU.
 
-##Contribuindo
-
+### Contribuindo
 Sinta-se à vontade para contribuir com melhorias! Se você quiser fazer uma mudança, siga estas etapas:
 
--Fork este repositório.
--Crie uma branch para sua modificação: git checkout -b minha-modificacao.
--Faça suas mudanças e faça um commit: git commit -am 'Adiciona nova funcionalidade'.
--Envie para o repositório remoto: git push origin minha-modificacao.
--Abra um Pull Request para a branch principal.
+- Faça um fork deste repositório.
 
-Documentação criada por Davi Tunussi
+- Crie uma branch para sua modificação:
+```
+git checkout -b minha-modificacao
+```
+- Faça suas mudanças e faça um commit:
+```
+git commit -am 'Adiciona nova funcionalidade'
+```
+- Envie para o repositório remoto:
+```
+git push origin minha-modificacao
+```
+- Abra um Pull Request para a branch principal.
+
+## Documentação criada por Davi Tunussi.
+
 
