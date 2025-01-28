@@ -26,7 +26,9 @@ O código realiza as seguintes etapas:
 
 5. **Saída de vídeo**: O vídeo de entrada é processado e gerado um vídeo de saída contendo as deteções e informações sobre os objetos identificados, com boxes desenhados ao redor de veículos e pessoas.
 
-6. **Nota**: O arquivo com caminho: **data/output/output_video.mp4** é um vídeo de exemplo de saída, demonstrando o resultado do projeto.
+6. **Nota**: O arquivo com caminho: **data/output/output_video.mp4** é um vídeo de exemplo de saída, demonstrando o resultado do projeto. O mesmo também pode ser acessado abaixo:
+   [![Output Video](https://img.youtube.com/vi/9PohRTh9VEA/maxresdefault.jpg)](https://www.youtube.com/watch?v=9PohRTh9VEA)
+
 
 ## Funcionalidades
 
