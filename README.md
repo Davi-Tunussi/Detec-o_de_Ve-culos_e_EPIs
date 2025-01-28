@@ -26,6 +26,8 @@ O código realiza as seguintes etapas:
 
 5. **Saída de vídeo**: O vídeo de entrada é processado e gerado um vídeo de saída contendo as deteções e informações sobre os objetos identificados, com boxes desenhados ao redor de veículos e pessoas.
 
+6. **Nota**: O arquivo com caminho: **data/output/output_video.mp4** é um vídeo de exemplo de saída, demonstrando o resultado do projeto.
+
 ## Funcionalidades
 
 - **Detecção de Veículos**: O código detecta veículos em movimento e salva as imagens (ROIs) de cada veículo identificado.
