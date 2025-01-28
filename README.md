@@ -1,4 +1,4 @@
-# Detecção de Veículos e EPIs (Rede Neural)
+# Detecção de Veículos e EPIs
 
 Este projeto utiliza redes neurais para realizar a detecção de veículos, pessoas e capacetes (EPIs). O código foi desenvolvido utilizando o modelo **YOLOv8**, e é capaz de:
 
